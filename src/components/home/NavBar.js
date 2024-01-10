@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import styles from "../../styles/homepage/navBar.module.scss";
 import { UilSearch } from "@iconscout/react-unicons";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const lineRef = useRef(null);
 
   // menu bar 下滑线滑动
@@ -47,7 +47,7 @@ function NavBar() {
 
   // 跳转到登录页面
   const toLogin = () => {
-    // navigate("/login");
+    navigate("/login");
     console.log("login");
   };
 
