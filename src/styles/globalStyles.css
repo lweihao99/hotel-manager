@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 /* :root {
@@ -32,10 +33,16 @@ body {
 
 * {
   font-family: "PingFangSC-Regular", sans-serif;
+  /* 文本溢出容器宽度，允许自动换行 */
+  word-wrap: break-word !important;
 }
 
-.container {
+/* .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+} */
+
+a {
+  cursor: pointer;
 }

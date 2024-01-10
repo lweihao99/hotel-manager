@@ -1,6 +1,173 @@
-$firstcolor: hsl(225, 66.67%, 98.82%);
-$underlineColor: hsl(223.33, 86.17%, 63.14%);
+// variable
+$black: #000;
+$white: hsl(0, 0%, 97.25%);
 
-h1 {
-  color: var(--primaryPurple);
+// navbar styles
+.navbar {
+  z-index: 999 !important;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  letter-spacing: 0.3px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .navbar_menu {
+    background-color: rgba($color: $white, $alpha: 0.8);
+    font-size: 16px;
+    height: 80px;
+    color: black;
+    display: flex;
+    position: relative;
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+
+    // navbar left side
+    .navbar_menu_left {
+      flex: 1 1 auto; // flex-grow 容器有剩余空间以1的比例自动扩展填充，flex-shrink 容器空间不足以1的比例自动缩小， flex-basis 不需要伸缩时保持不变
+      align-items: center;
+      display: flex;
+      position: static;
+
+      .menu_logo {
+        max-height: 100%;
+        flex: 0 0 auto;
+        margin-top: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 104px;
+
+        a {
+          display: flex;
+        }
+      }
+
+      .menu_box {
+        flex: 1 1 auto;
+        height: 100%;
+        padding-left: 24px;
+        display: flex;
+        align-items: center;
+
+        .menu_ul {
+          display: flex;
+          flex: 1 1 auto;
+          width: 0;
+          white-space: nowrap; // 不允许自动换行
+          margin-right: 40px;
+
+          .menu_ul_container {
+            flex: 1 1 auto;
+            width: 0;
+            overflow: hidden;
+
+            .tab_head_container {
+              position: relative;
+              margin-left: 0;
+              transition: all ease 0.3s;
+
+              .underline {
+                transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 50ms;
+                height: 2px;
+                background: #000;
+                position: absolute;
+                top: 78px;
+              }
+            }
+          }
+
+          .tab_head_li {
+            height: 100%;
+            line-height: 80px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            padding: 0 20px;
+
+            a {
+              color: #000;
+              font-size: 16px;
+              letter-spacing: 0;
+              display: inline-block;
+              height: 100%;
+              position: relative;
+              max-width: 100%;
+            }
+          }
+        }
+
+        .search_btn {
+          cursor: pointer;
+          justify-content: end; // 向右对齐
+          display: flex;
+          align-items: center; // 垂直对齐
+          flex-shrink: 0; // 防止元素垂直方向缩小
+
+          .search_icon {
+            display: inline-flex;
+            width: 182px;
+            height: 38px;
+            padding-left: 16px;
+            color: $black;
+            align-items: center;
+            border-radius: 20px;
+            border: 1px solid rgba($color: #000000, $alpha: 0.1);
+            cursor: pointer;
+
+            .icon {
+              opacity: 0.5;
+              width: 24px;
+              height: 24px;
+            }
+
+            span {
+              font-size: 16px;
+              color: rgba($color: #000000, $alpha: 0.8);
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    // navbar right side
+    .center {
+      display: flex;
+
+      .navbar_menu_right {
+        flex: 0 0 auto;
+        position: relative;
+        min-width: 66px;
+        color: #000;
+        line-height: 80px;
+        margin-left: 40px;
+        font-size: 16px;
+
+        button {
+          background: transparent;
+          border: none;
+          font-size: 16px;
+          color: #000;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 721px) and (max-width: 1200px) {
+  .navbar .navbar_menu {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar .navbar_menu {
+    padding: 0 80px;
+  }
 }
