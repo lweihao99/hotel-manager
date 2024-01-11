@@ -1,5 +1,4 @@
 // variable
-$black: #000;
 $white: hsl(0, 0%, 97.25%);
 
 // navbar styles
@@ -24,6 +23,10 @@ $white: hsl(0, 0%, 97.25%);
     backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
 
+    &:hover {
+      background-color: rgba($color: $white, $alpha: 1);
+    }
+
     // navbar left side
     .navbar_menu_left {
       flex: 1 1 auto; // flex-grow 容器有剩余空间以1的比例自动扩展填充，flex-shrink 容器空间不足以1的比例自动缩小， flex-basis 不需要伸缩时保持不变
@@ -42,6 +45,7 @@ $white: hsl(0, 0%, 97.25%);
 
         a {
           display: flex;
+          color: #507df2;
         }
       }
 
@@ -110,7 +114,7 @@ $white: hsl(0, 0%, 97.25%);
             width: 182px;
             height: 38px;
             padding-left: 16px;
-            color: $black;
+            color: #000;
             align-items: center;
             border-radius: 20px;
             border: 1px solid rgba($color: #000000, $alpha: 0.1);

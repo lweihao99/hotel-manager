@@ -7,9 +7,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login></Login>}></Route>
           {/* 渲染HomePage组件 */}
           <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
         </Routes>
       </BrowserRouter>
     </>

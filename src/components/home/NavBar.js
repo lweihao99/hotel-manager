@@ -56,6 +56,7 @@ function NavBar() {
       <div className={styles.navbar_menu}>
         {/* left side navbar */}
         <div className={styles.navbar_menu_left}>
+          {/* logo */}
           <div className={styles.menu_logo}>
             <a href="/" id="logo">
               <p>Hotem Manager</p>
@@ -63,6 +64,7 @@ function NavBar() {
           </div>
 
           <div className={styles.menu_box}>
+            {/* menu ul list */}
             <div className={styles.menu_ul}>
               <div className={styles.menu_ul_container}>
                 <div className={styles.tab_head_container}>
@@ -82,7 +84,7 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <a href="#" className={styles.menu_link}>
+                    <a href="home" className={styles.menu_link}>
                       Home
                     </a>
                   </div>
@@ -128,6 +130,7 @@ function NavBar() {
               </div>
             </div>
 
+            {/* search button */}
             <div className={styles.search_btn} style={{ width: "auto" }}>
               <div className={styles.search_icon}>
                 <UilSearch className={styles.icon}></UilSearch>

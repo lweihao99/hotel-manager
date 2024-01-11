@@ -1,0 +1,32 @@
+[
+  {
+    "name": "hotel-1",
+    "imageUrl": "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "The xxx Hotel is a modern, elegant 4-star hotel overlooking the sea, perfect for a romantic, charming vacation, in the enchanting setting of Taormina and the Ionian Sea."
+  },
+  {
+    "name": "hotel-2",
+    "imageUrl": "https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "A hotel is a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists."
+  },
+  {
+    "name": "hotel-3",
+    "imageUrl": "https://images.pexels.com/photos/53464/sheraton-palace-hotel-lobby-architecture-san-francisco-53464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Facilities include 24-hour room service, Wi-Fi access, LCD TV in the rooms, restaurant, snack-bar, business area, fitness centre with sauna and private parking."
+  },
+  {
+    "name": "hotel-4",
+    "imageUrl": "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Villas Eco Arenal's comfortable rooms and suites overlook lush gardens with panoramic views of the Arenal Volcano."
+  },
+  {
+    "name": "hotel-5",
+    "imageUrl": "https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg",
+    "description": "Villas Eco Arenal's comfortable rooms and suites overlook lush gardens with panoramic views of the Arenal Volcano."
+  },
+  {
+    "name": "hotel-6",
+    "imageUrl": "https://images.pexels.com/photos/70441/pexels-photo-70441.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "description": "Villas Eco Arenal's comfortable rooms and suites overlook lush gardens with panoramic views of the Arenal Volcano."
+  }
+]
