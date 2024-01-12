@@ -12,6 +12,7 @@ function NavBar() {
     const navbarTab = e.currentTarget.closest("[data-tab]");
     const tab = navbarTab.getAttribute("data-tab");
 
+    // 下划线样式
     if (isActive) {
       navbarTab.classList.add("hoverActive");
       lineRef.current.style.display = "block";
@@ -58,7 +59,7 @@ function NavBar() {
         <div className={styles.navbar_menu_left}>
           {/* logo */}
           <div className={styles.menu_logo}>
-            <a href="/" id="logo">
+            <a href="#" id="logo">
               <p>Hotem Manager</p>
             </a>
           </div>
@@ -84,7 +85,7 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <a href="home" className={styles.menu_link}>
+                    <a href="#home" className={styles.menu_link}>
                       Home
                     </a>
                   </div>
@@ -98,7 +99,7 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <a href="#" className={styles.menu_link}>
+                    <a href="#manage" className={styles.menu_link}>
                       Manage
                     </a>
                   </div>
@@ -110,7 +111,7 @@ function NavBar() {
                     }}
                     onMouseLeave={(e) => hoverActive(e, false)}
                   >
-                    <a href="#" className={styles.menu_link}>
+                    <a href="#service" className={styles.menu_link}>
                       Service
                     </a>
                   </div>
@@ -122,7 +123,7 @@ function NavBar() {
                     }}
                     onMouseLeave={(e) => hoverActive(e, false)}
                   >
-                    <a href="#" className={styles.menu_link}>
+                    <a href="#about" className={styles.menu_link}>
                       About
                     </a>
                   </div>

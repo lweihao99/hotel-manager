@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "../../styles/homepage/wrapper.module.scss";
 import hotelsData from "../../assets/data/hotel-data.json";
 import { UilAngleLeft, UilAngleRight } from "@iconscout/react-unicons";
+import { throttle } from "lodash";
 
 function Carousel() {
   const itemRefs = useRef([]);
@@ -44,10 +45,13 @@ function Carousel() {
     }
   };
 
+  // 更准确的自动轮播时间
+  const throttleAutoSlide = throttle(_autoSlide, 3000);
+
   let timer;
   useEffect(() => {
     itemRefs.current = hotelsData.map((_, index) => itemRefs.current[index]); // 进行匹配同步
-    timer = setInterval(_autoSlide, 3000);
+    timer = setInterval(throttleAutoSlide, 16); // 1000 /60frame 约 16.67ms 所以每1帧调用一次
     return () => clearInterval(timer);
   }, []);
 
