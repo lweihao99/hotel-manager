@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "../../styles/homepage/navBar.module.scss";
 import { UilSearch } from "@iconscout/react-unicons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -99,9 +99,9 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <a href="#manage" className={styles.menu_link}>
+                    <Link to="/manage" className={styles.menu_link}>
                       Manage
-                    </a>
+                    </Link>
                   </div>
                   <div
                     className={styles.tab_head_li}

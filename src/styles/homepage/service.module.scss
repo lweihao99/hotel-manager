@@ -1,0 +1,112 @@
+.service {
+  background: #fff;
+
+  .service_title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: 600;
+    margin-top: 0;
+    padding-top: 1rem;
+  }
+
+  .service_subtitle {
+    display: block;
+    font-size: 1.5rem;
+    text-align: center;
+    color: hsl(230, 8%, 45%);
+  }
+  .service_container {
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .service_left {
+      width: 540px;
+
+      h2 {
+        max-height: 128px;
+        margin: unset;
+        margin-bottom: 64px;
+        font-weight: unset;
+        font-size: 48px;
+        letter-spacing: 0;
+        line-height: 64px;
+        color: #000;
+        white-space: normal; //文本换行
+        -webkit-box-orient: vertical; // 内联块元素布局方向,当文本超出容器宽度时，自动换行
+        -webkit-line-clamp: 3; // 显示的行数
+        overflow: hidden;
+        text-overflow: ellipsis; // 文本溢出使用省略号
+      }
+
+      p {
+        max-width: 524px;
+        max-height: 130px;
+        word-break: break-word;
+        color: rgba($color: #000000, $alpha: 0.8);
+        letter-spacing: 0;
+        margin-bottom: 48px;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box; // 设定元素为内联块 inline-block
+        -webkit-line-clamp: 5; // 显示的行数
+        -webkit-box-orient: vertical; // 内联块元素布局方向,当文本超出容器宽度时，自动换行
+        line-height: 26px;
+        font-size: 20px;
+      }
+
+      .service_button {
+        display: flex;
+        flex-wrap: wrap; // 超出容器宽度，允许水平方向换行
+
+        .button_1 {
+          margin-bottom: 16px;
+          font-size: 16px;
+          padding: 0 32px;
+          border-radius: 24px;
+          margin-right: 32px;
+          background: #000;
+          color: #fff;
+          line-height: 48px;
+          text-decoration: none;
+          transform: scale(1) perspective(1px);
+          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &:hover {
+            filter: drop-shadow(0 0 10px rgba($color: #000000, $alpha: 0.5));
+            transform: scale(1.1) perspective(1px);
+          }
+        }
+      }
+    }
+
+    .service_right {
+      height: 560px;
+      width: 740px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .service_image {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+          float: left;
+          background-image: cover;
+          border: 0 none;
+        }
+      }
+    }
+  }
+}
