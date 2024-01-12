@@ -30,6 +30,8 @@ function Carousel() {
   // 自动轮播
 
   let _autoSlide = () => {
+    if (!itemRefs.current) return;
+
     if (_direction) {
       let firstItem = itemRefs.current[0];
       document.querySelector("#slide").appendChild(firstItem);
@@ -50,16 +52,18 @@ function Carousel() {
 
   let timer;
   useEffect(() => {
+    if (!itemRefs.current) return;
     itemRefs.current = hotelsData.map((_, index) => itemRefs.current[index]); // 进行匹配同步
     timer = setInterval(throttleAutoSlide, 16); // 1000 /60frame 约 16.67ms 所以每1帧调用一次
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="carousel">
       <div
         className={styles.carousel_container}
         id="home"
+        name="home"
         onMouseOver={() => clearInterval(timer)}
         onMouseLeave={() => (timer = setInterval(_autoSlide, 3000))}
       >

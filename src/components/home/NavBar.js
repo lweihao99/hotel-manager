@@ -7,6 +7,20 @@ function NavBar() {
   const navigate = useNavigate();
   const lineRef = useRef(null);
 
+  const handleScroll = (e) => {
+    e.preventDefault();
+    const id = e.target.getAttribute("href").split("#")[1];
+    const element = document.getElementById(id);
+    const navbarHeight = 80;
+    // const viewHeight = element.getBoundingClientRect().top;  // 相对于视口高度
+    const offsetTop = element.offsetTop; // 相对于祖先元素
+    const vScrolled = window.scrollY; // 垂直方向已经滚动的距离
+    window.scrollTo({
+      top: offsetTop - navbarHeight,
+      behavior: "smooth",
+    });
+  };
+
   // menu bar 下滑线滑动
   const hoverActive = (e, isActive) => {
     const navbarTab = e.currentTarget.closest("[data-tab]");
@@ -85,7 +99,11 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <a href="#home" className={styles.menu_link}>
+                    <a
+                      href="#home"
+                      className={styles.menu_link}
+                      onClick={(e) => handleScroll(e)}
+                    >
                       Home
                     </a>
                   </div>
@@ -111,7 +129,13 @@ function NavBar() {
                     }}
                     onMouseLeave={(e) => hoverActive(e, false)}
                   >
-                    <a href="#service" className={styles.menu_link}>
+                    <a
+                      href="#service"
+                      className={styles.menu_link}
+                      onClick={(e) => {
+                        handleScroll(e);
+                      }}
+                    >
                       Service
                     </a>
                   </div>
@@ -123,7 +147,11 @@ function NavBar() {
                     }}
                     onMouseLeave={(e) => hoverActive(e, false)}
                   >
-                    <a href="#about" className={styles.menu_link}>
+                    <a
+                      href="#about"
+                      className={styles.menu_link}
+                      onClick={(e) => handleScroll(e)}
+                    >
                       About
                     </a>
                   </div>
