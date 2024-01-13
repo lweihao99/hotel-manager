@@ -108,24 +108,7 @@ function NavBar() {
                       Home
                     </a>
                   </div>
-                  <div
-                    className={styles.tab_head_li}
-                    data-tab="2"
-                    onMouseEnter={(e) => {
-                      hoverActive(e, true);
-                    }}
-                    onMouseLeave={(e) => {
-                      hoverActive(e, false);
-                    }}
-                  >
-                    <Link
-                      to="/manage"
-                      className={styles.menu_link}
-                      target="_blank"
-                    >
-                      Manage
-                    </Link>
-                  </div>
+
                   <div
                     className={styles.tab_head_li}
                     data-tab="3"
@@ -144,6 +127,7 @@ function NavBar() {
                       Service
                     </a>
                   </div>
+
                   <div
                     className={styles.tab_head_li}
                     data-tab="4"
@@ -158,6 +142,25 @@ function NavBar() {
                       onClick={(e) => handleScroll(e)}
                     >
                       About
+                    </a>
+                  </div>
+
+                  <div
+                    className={styles.tab_head_li}
+                    data-tab="2"
+                    onMouseEnter={(e) => {
+                      hoverActive(e, true);
+                    }}
+                    onMouseLeave={(e) => {
+                      hoverActive(e, false);
+                    }}
+                  >
+                    <a
+                      href="#offer"
+                      className={styles.menu_link}
+                      // onClick={(e) => handleScroll(e)}
+                    >
+                      Offer
                     </a>
                   </div>
                 </div>
