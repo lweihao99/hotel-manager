@@ -1,16 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.scss";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input, notification, message } from "antd";
 import { UilReact } from "@iconscout/react-unicons";
-
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+import { _login } from "./api/adminApi";
 
 function Login() {
+  const [form] = Form.useForm(); // 对表单数据与进行交互，若是class component可以用ref
+  const navigate = useNavigate();
+
+  // 登录
+  const onFinish = async (values) => {
+    const res = await _login(values); // 进行登录请求
+
+    if (!res) return;
+
+    if (res.status === "success") {
+      // message.success("登录成功");
+      message.success("Login success");
+      navigate("/manage");
+    }
+  };
   return (
     <div className={styles.login_root}>
       <div className={styles.login}>
@@ -48,6 +58,7 @@ function Login() {
                 <div className={styles.form_container}>
                   <Form
                     name="basic"
+                    form={form}
                     labelCol={{
                       span: 6,
                     }}
@@ -58,10 +69,10 @@ function Login() {
                       maxWidth: 600,
                     }}
                     initialValues={{
-                      remember: true,
+                      username: "",
+                      password: "",
                     }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                   >
                     <Form.Item
@@ -96,8 +107,17 @@ function Login() {
                         span: 16,
                       }}
                     >
-                      <Button type="primary">Login</Button>
-                      <Button style={{ marginLeft: "2rem" }}>Cancel</Button>
+                      <Button type="primary" htmlType="submit">
+                        Login
+                      </Button>
+                      <Button
+                        style={{ marginLeft: "2rem" }}
+                        onClick={() => {
+                          form.resetFields();
+                        }}
+                      >
+                        Cancel
+                      </Button>
                     </Form.Item>
                   </Form>
                 </div>
