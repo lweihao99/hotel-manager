@@ -3,6 +3,7 @@ import Carousel from "./Carousel";
 import Service from "./Service";
 import About from "./About";
 import Footer from "./Footer";
+import Location from "./Location";
 
 function MainContent() {
   return (
@@ -10,6 +11,7 @@ function MainContent() {
       <Carousel></Carousel>
       <Service></Service>
       <About></About>
+      <Location></Location>
       <Footer></Footer>
     </main>
   );

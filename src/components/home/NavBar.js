@@ -38,18 +38,18 @@ function NavBar() {
           break;
 
         case "2":
-          lineRef.current.style.left = "106px";
-          lineRef.current.style.width = "55px";
+          lineRef.current.style.left = "107px";
+          lineRef.current.style.width = "48px";
           break;
 
         case "3":
-          lineRef.current.style.left = "207px";
-          lineRef.current.style.width = "50px";
+          lineRef.current.style.left = "203px";
+          lineRef.current.style.width = "36px";
           break;
 
         case "4":
-          lineRef.current.style.left = "300px";
-          lineRef.current.style.width = "40px";
+          lineRef.current.style.left = "285px";
+          lineRef.current.style.width = "55px";
           break;
 
         default:
@@ -111,7 +111,7 @@ function NavBar() {
 
                   <div
                     className={styles.tab_head_li}
-                    data-tab="3"
+                    data-tab="2"
                     onMouseEnter={(e) => {
                       hoverActive(e, true);
                     }}
@@ -130,7 +130,7 @@ function NavBar() {
 
                   <div
                     className={styles.tab_head_li}
-                    data-tab="4"
+                    data-tab="3"
                     onMouseEnter={(e) => {
                       hoverActive(e, true);
                     }}
@@ -147,7 +147,7 @@ function NavBar() {
 
                   <div
                     className={styles.tab_head_li}
-                    data-tab="2"
+                    data-tab="4"
                     onMouseEnter={(e) => {
                       hoverActive(e, true);
                     }}
@@ -156,11 +156,11 @@ function NavBar() {
                     }}
                   >
                     <a
-                      href="#offer"
+                      href="#location"
                       className={styles.menu_link}
                       // onClick={(e) => handleScroll(e)}
                     >
-                      Offer
+                      Location
                     </a>
                   </div>
                 </div>
