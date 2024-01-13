@@ -7,6 +7,7 @@ function NavBar() {
   const navigate = useNavigate();
   const lineRef = useRef(null);
 
+  // 滚动效果
   const handleScroll = (e) => {
     e.preventDefault();
     const id = e.target.getAttribute("href").split("#")[1];
@@ -117,7 +118,11 @@ function NavBar() {
                       hoverActive(e, false);
                     }}
                   >
-                    <Link to="/manage" className={styles.menu_link}>
+                    <Link
+                      to="/manage"
+                      className={styles.menu_link}
+                      target="_blank"
+                    >
                       Manage
                     </Link>
                   </div>
