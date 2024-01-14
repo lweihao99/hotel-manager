@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.scss";
 import { Button, Form, Input, notification, message } from "antd";
@@ -9,18 +9,35 @@ function Login() {
   const [form] = Form.useForm(); // 对表单数据与进行交互，若是class component可以用ref
   const navigate = useNavigate();
 
-  // 登录
+  // 判断是否已经登录
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      navigate("/manage");
+    }
+  }, []);
+
+  // 使用Api登录
+  // const onFinish = async (values) => {
+  //   const res = await _login(values); // 进行登录请求
+
+  //   if (!res) return;
+
+  //   if (res.status === "success") {
+  //     // message.success("登录成功");
+  //     message.success("Login success");
+  //     navigate("/manage");
+  //   }
+  // };
+
+  // Static Login
   const onFinish = async (values) => {
-    const res = await _login(values); // 进行登录请求
-
-    if (!res) return;
-
-    if (res.status === "success") {
-      // message.success("登录成功");
+    const { username, password } = values;
+    if (username === "admin" && password === "admin") {
       message.success("Login success");
       navigate("/manage");
     }
   };
+
   return (
     <div className={styles.login_root}>
       <div className={styles.login}>
