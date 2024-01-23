@@ -33,6 +33,7 @@ function Login() {
   const onFinish = async (values) => {
     const { username, password } = values;
     if (username === "admin" && password === "admin") {
+      sessionStorage.setItem("token", username);
       message.success("Login success");
       navigate("/manage");
     }

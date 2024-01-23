@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -29,11 +29,11 @@ const ITEMS = [
     label: "Account",
     children: [
       {
-        key: "1-1",
+        key: "accountManage",
         label: "Account Manage",
       },
       {
-        key: "1-2",
+        key: "userManage",
         label: "Users Manage",
       },
     ],
@@ -44,15 +44,15 @@ const ITEMS = [
     label: "Room",
     children: [
       {
-        key: "2-1",
+        key: "room",
         label: "Room Manage",
       },
       {
-        key: "2-2",
+        key: "type",
         label: "Room Type Manage",
       },
       {
-        key: "2-3",
+        key: "revenue",
         label: "Revenue",
       },
     ],
@@ -110,6 +110,13 @@ function Manage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  // 如果没有token就返回登录页面
+  useEffect(() => {
+    if (!sessionStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -124,6 +131,12 @@ function Manage() {
       localStorage.clear();
       showModal();
     }
+  };
+
+  const handleSideClick = (e) => {
+    const key = e.key;
+
+    if (key === "accountManage") navigate("/manage/account");
   };
 
   // handle logout
@@ -168,6 +181,7 @@ function Manage() {
           theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
+          onClick={(e) => handleSideClick(e)}
           items={ITEMS}
         />
       </Sider>
@@ -219,7 +233,7 @@ function Manage() {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <Outlet></Outlet>
         </Content>
       </Layout>
     </Layout>
