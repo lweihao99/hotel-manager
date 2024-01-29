@@ -27,7 +27,7 @@ const tailLayout = {
   },
 };
 
-function DrawerForm({ setDrawerClose }) {
+function DrawerForm({ setDrawerClose, setRoleList }) {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
 
@@ -36,8 +36,14 @@ function DrawerForm({ setDrawerClose }) {
     try {
       const res = await _add_account_role(values);
       const { data } = res.data;
+
+      console.log(data);
+
       if (res.status === 200) {
         openNotificationWithIcon("success", data.accountName, data.role);
+
+        // 手动更新数据
+        setRoleList((prev) => [...prev, { key: data.roleId, ...data }]);
       }
       setDrawerClose(false);
       form.resetFields();

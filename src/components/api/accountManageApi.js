@@ -28,3 +28,16 @@ export const _add_account_role = async (data) => {
     throw Error(error);
   }
 };
+
+// delete role
+export const _delete_role = async (id) => {
+  try {
+    const res = await axios({
+      method: "DELETE",
+      url: `/api/role/${id}`,
+    });
+    // console.log("clicked", res);
+  } catch (error) {
+    console.error(error);
+  }
+};
