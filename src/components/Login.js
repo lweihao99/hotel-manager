@@ -17,27 +17,34 @@ function Login() {
   }, []);
 
   // 使用Api登录
-  // const onFinish = async (values) => {
-  //   const res = await _login(values); // 进行登录请求
-
-  //   if (!res) return;
-
-  //   if (res.status === "success") {
-  //     // message.success("登录成功");
-  //     message.success("Login success");
-  //     navigate("/manage");
-  //   }
-  // };
-
-  // Static Login
   const onFinish = async (values) => {
-    const { username, password } = values;
-    if (username === "admin" && password === "admin") {
-      sessionStorage.setItem("token", username);
-      message.success("Login success");
-      navigate("/manage");
+    try {
+      const res = await _login(values); // 进行登录请求
+
+      if (!res) throw Error("登录失败");
+
+      if (res.status === "success") {
+        // message.success("登录成功");
+        message.success("Login success");
+        navigate("/manage");
+      }
+    } catch (error) {
+      message.error("登录失败");
+      console.error(error);
     }
   };
+
+  // Static Login
+  // const onFinish = async (values) => {
+  //   const { username, password } = values;
+  //   if (username === "admin" && password === "admin") {
+  //     sessionStorage.setItem("token", username);
+  //     message.success("Login success");
+  //     navigate("/manage");
+  //   } else {
+  //     message.error("Login failed");
+  //   }
+  // };
 
   return (
     <div className={styles.login_root}>

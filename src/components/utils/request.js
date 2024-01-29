@@ -16,7 +16,7 @@ instance.interceptors.request.use(
       const token = sessionStorage.getItem("token");
       const newToken = token.replace(/[\\"]/g, ""); // 替换 \ "
       config.headers.Authorization = `Bearer ${newToken}`;
-      console.log(config);
+      // console.log(config);
     }
     return config;
   },
