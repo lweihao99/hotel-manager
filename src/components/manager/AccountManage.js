@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Tag, Drawer, Modal } from "antd";
+import { Button, Table, Tag, Drawer, Modal, Space } from "antd";
 import { _account_list, _delete_role } from "../api/accountManageApi";
 import styles from "../../styles/manage/role.module.scss";
 import DrawerForm from "./drawerForm";
@@ -7,6 +7,7 @@ import DrawerForm from "./drawerForm";
 function AccountManage() {
   const [roleList, setRoleList] = useState([]);
   const [open, setOpen] = useState(false);
+  const [roleId, setRoleId] = useState("");
 
   // 表单列表
   const columns = [
@@ -37,29 +38,41 @@ function AccountManage() {
       key: "action",
       dataIndex: "action",
       render: (_, record) => (
-        <Button
-          type="primary"
-          danger
-          onClick={async () => {
-            try {
-              // 显示删除对话框
-              Modal.confirm({
-                title: "Delete Account",
-                content: "Are you sure you want to delete this account?",
-                okText: "Confirm",
-                cancelText: "Cancel",
-                async onOk() {
-                  await _delete_role(record._id);
-                  setRoleList(roleList.filter((cur) => cur._id !== record._id));
-                },
-              });
-            } catch (error) {
-              console.error(error);
-            }
-          }}
-        >
-          Delete
-        </Button>
+        <>
+          <Space>
+            <Button type="default" onClick={() => handleEdit(record._id)}>
+              Edit
+            </Button>
+            <Button
+              type="default"
+              danger
+              onClick={async () => {
+                try {
+                  // 显示删除对话框
+                  Modal.confirm({
+                    title: "Delete Account",
+                    content: "Are you sure you want to delete this account?",
+                    okText: "Confirm",
+                    cancelText: "Cancel",
+                    style: { top: "40%" },
+                    async onOk() {
+                      // 执行删除操作
+                      await _delete_role(record._id);
+                      // 手动更新数据状态
+                      setRoleList(
+                        roleList.filter((cur) => cur._id !== record._id)
+                      );
+                    },
+                  });
+                } catch (error) {
+                  console.error(error);
+                }
+              }}
+            >
+              Delete
+            </Button>
+          </Space>
+        </>
       ),
     },
   ];
@@ -79,6 +92,12 @@ function AccountManage() {
     }
   }, []);
 
+  // edit
+  const handleEdit = (id) => {
+    setRoleId(id);
+    showDrawer();
+  };
+
   // drawer controll
   const showDrawer = () => {
     setOpen(true);
@@ -90,17 +109,29 @@ function AccountManage() {
   return (
     <>
       <div className={styles.search}>
-        <Button onClick={showDrawer}>Add</Button>
+        <Button
+          onClick={() => {
+            showDrawer();
+            setRoleId("");
+          }}
+        >
+          Add
+        </Button>
       </div>
       <Table
         dataSource={roleList}
         columns={columns}
         // style={{ height: "100%" }}
       />
-      <Drawer title="Add new account" onClose={onClose} open={open}>
+      <Drawer
+        title={roleId ? "Edit role" : "Add new account"}
+        onClose={onClose}
+        open={open}
+      >
         <DrawerForm
           setDrawerClose={setOpen}
           setRoleList={setRoleList}
+          roleId={roleId && roleId}
         ></DrawerForm>
       </Drawer>
     </>

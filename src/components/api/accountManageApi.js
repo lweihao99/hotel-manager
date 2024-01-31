@@ -41,3 +41,16 @@ export const _delete_role = async (id) => {
     console.error(error);
   }
 };
+
+// patch account
+export const _edit_role = async (id, oldData) => {
+  try {
+    const update = await axios({
+      method: "PATCH",
+      url: `/api/role/${id}`,
+      data: oldData,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
