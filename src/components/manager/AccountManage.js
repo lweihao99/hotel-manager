@@ -8,6 +8,7 @@ function AccountManage() {
   const [roleList, setRoleList] = useState([]);
   const [open, setOpen] = useState(false);
   const [roleId, setRoleId] = useState("");
+  const [values, setValues] = useState({});
 
   // 表单列表
   const columns = [
@@ -40,7 +41,7 @@ function AccountManage() {
       render: (_, record) => (
         <>
           <Space>
-            <Button type="default" onClick={() => handleEdit(record._id)}>
+            <Button type="default" onClick={() => handleEdit(record)}>
               Edit
             </Button>
             <Button
@@ -93,8 +94,9 @@ function AccountManage() {
   }, []);
 
   // edit
-  const handleEdit = (id) => {
-    setRoleId(id);
+  const handleEdit = ({ _id, accountName, role }) => {
+    setRoleId(_id);
+    setValues({ accountName, role });
     showDrawer();
   };
 
@@ -132,6 +134,7 @@ function AccountManage() {
           setDrawerClose={setOpen}
           setRoleList={setRoleList}
           roleId={roleId && roleId}
+          oldRole={values && values}
         ></DrawerForm>
       </Drawer>
     </>

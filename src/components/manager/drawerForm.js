@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Form,
@@ -27,9 +27,16 @@ const tailLayout = {
   },
 };
 
-function DrawerForm({ setDrawerClose, setRoleList, roleId }) {
+function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
+
+  // 在点击edit之后将旧数据显示在form上
+  useEffect(() => {
+    if (roleId) {
+      form.setFieldsValue(oldRole);
+    }
+  }, [oldRole, form, roleId]);
 
   const onFinish = async (values) => {
     try {
@@ -50,11 +57,21 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId }) {
         form.resetFields();
       } else {
         // 修改的情况下会有roleId传入 // edit role
-        console.log(values);
         const oldData = { ...values };
         const id = roleId;
-        await _edit_role(id, oldData);
-        // todo 添加notification，修改的时候在输入框显示旧数据，修改完成后清空并关闭侧窗口
+        const res = await _edit_role(id, oldData);
+        const { status, data } = res.data;
+        if (status) {
+          setDrawerClose(false);
+          openNotificationWithIcon("success", data.accountName, data.role);
+          form.resetFields();
+          // update data to re-render
+          setRoleList((prev) =>
+            prev.map((item) =>
+              item.roleId === data.roleId ? { ...data, key: data.roleId } : item
+            )
+          );
+        }
       }
     } catch (error) {
       message.error(error.message);
@@ -77,7 +94,6 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId }) {
       <Form
         {...layout}
         form={form}
-        name="control-hooks"
         onFinish={onFinish}
         style={{
           maxWidth: 600,

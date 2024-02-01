@@ -50,6 +50,8 @@ export const _edit_role = async (id, oldData) => {
       url: `/api/role/${id}`,
       data: oldData,
     });
+
+    return update;
   } catch (error) {
     console.error(error);
   }
