@@ -15,6 +15,7 @@ import {
   AuditOutlined,
   TeamOutlined,
   KeyOutlined,
+  AreaChartOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme, message, Modal, Alert } from "antd";
 import styles from "../../styles/manage/Layout.module.scss";
@@ -33,8 +34,8 @@ const ITEMS = [
         label: "Account Manage",
       },
       {
-        key: "userManage",
-        label: "Users Manage",
+        key: "staffManage",
+        label: "Staff Manage",
       },
     ],
   },
@@ -51,16 +52,17 @@ const ITEMS = [
         key: "type",
         label: "Room Type Manage",
       },
-      {
-        key: "revenue",
-        label: "Revenue",
-      },
     ],
   },
   {
     key: "3",
     icon: <TeamOutlined />,
     label: "Clients",
+  },
+  {
+    key: "4",
+    icon: <AreaChartOutlined />,
+    label: "Statistics",
   },
 ];
 
@@ -135,8 +137,10 @@ function Manage() {
 
   const handleSideClick = (e) => {
     const key = e.key;
+    console.log(key);
 
     if (key === "accountManage") navigate("/manage/account");
+    if (key === "staffManage") navigate("/manage/staff");
   };
 
   // handle logout
@@ -159,6 +163,7 @@ function Manage() {
 
   return (
     <Layout styles={styles.layout}>
+      {/* side menu bar */}
       <Sider
         className={styles.sider}
         trigger={null}

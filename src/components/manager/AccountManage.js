@@ -26,13 +26,34 @@ function AccountManage() {
       title: "Role",
       key: "role",
       dataIndex: "role",
-      render: (_, { role, roleId }) => (
-        <>
-          <Tag color={"green"} key={roleId}>
-            {role}
-          </Tag>
-        </>
-      ),
+      render: (_, { role, roleId }) => {
+        let color; // 定义用户级别tag颜色
+        switch (role) {
+          case "normal":
+            color = "green";
+            break;
+          case "vip":
+            color = "gold";
+            break;
+          case "vvip":
+            color = "purple";
+            break;
+          default:
+            break;
+        }
+        return (
+          <>
+            <Tag color={color} key={roleId}>
+              {role}
+            </Tag>
+          </>
+        );
+      },
+    },
+    {
+      title: "Created At",
+      key: "createdAt",
+      dataIndex: "createdAt",
     },
     {
       title: "Action",
@@ -84,8 +105,15 @@ function AccountManage() {
       (async function getAccountList() {
         const list = await _account_list();
         const data = list.data.map((ele) => {
-          return { ...ele, role: ele.role, key: ele.roleId };
+          const formattedDate = new Date(ele.createdAt).toLocaleDateString();
+          return {
+            ...ele,
+            role: ele.role,
+            key: ele.roleId,
+            createdAt: formattedDate,
+          };
         });
+        // console.log(data);
         setRoleList(data);
       })();
     } catch (error) {

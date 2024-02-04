@@ -119,7 +119,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
           <Select placeholder="Select a role type." allowClear>
             <Option value="vip">Vip</Option>
             <Option value="normal">Normal</Option>
-            <Option value="admin">Admin</Option>
+            <Option value="vvip">VVip</Option>
           </Select>
         </Form.Item>
 

@@ -1,5 +1,6 @@
 import axios from "../utils/request";
 
+// 获取员工职位信息
 export const _login = async (params) => {
   try {
     // const { data } = await axios.get(`login`, { params }); // 传递params参数作为query,get方法登录信息不安全
@@ -20,3 +21,5 @@ export const _login = async (params) => {
     console.error("Error", error.message);
   }
 };
+
+// new user register, 登录新的员工信息

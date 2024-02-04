@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.scss";
-import { Button, Form, Input, notification, message } from "antd";
+import { Button, Form, Input, notification, message, Checkbox } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { UilReact } from "@iconscout/react-unicons";
 import { _login } from "./api/adminApi";
 
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
+
 function Login() {
   const [form] = Form.useForm(); // 对表单数据与进行交互，若是class component可以用ref
+  const [register, setRegister] = useState(false);
   const navigate = useNavigate();
 
   // 判断是否已经登录
@@ -21,7 +26,7 @@ function Login() {
     try {
       const res = await _login(values); // 进行登录请求
 
-      if (!res) throw Error("登录失败");
+      if (!res) throw Error("Login Failed.");
 
       if (res.status === "success") {
         // message.success("登录成功");
@@ -29,7 +34,7 @@ function Login() {
         navigate("/manage");
       }
     } catch (error) {
-      message.error("登录失败");
+      message.error("Login Failed.");
       console.error(error);
     }
   };
@@ -45,6 +50,8 @@ function Login() {
   //     message.error("Login failed");
   //   }
   // };
+
+  // register controll
 
   return (
     <div className={styles.login_root}>
@@ -81,70 +88,15 @@ function Login() {
 
               <span className={styles.right}>
                 <div className={styles.form_container}>
-                  <Form
-                    name="basic"
-                    form={form}
-                    labelCol={{
-                      span: 6,
-                    }}
-                    wrapperCol={{
-                      span: 15,
-                    }}
-                    style={{
-                      maxWidth: 600,
-                    }}
-                    initialValues={{
-                      username: "",
-                      password: "",
-                    }}
-                    onFinish={onFinish}
-                    autoComplete="off"
-                  >
-                    <Form.Item
-                      label="Username"
-                      name="username"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your username!",
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      label="Password"
-                      name="password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your password!",
-                        },
-                      ]}
-                    >
-                      <Input.Password />
-                    </Form.Item>
-
-                    <Form.Item
-                      wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                      }}
-                    >
-                      <Button type="primary" htmlType="submit">
-                        Login
-                      </Button>
-                      <Button
-                        style={{ marginLeft: "2rem" }}
-                        onClick={() => {
-                          form.resetFields();
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                    </Form.Item>
-                  </Form>
+                  {/* register login form */}
+                  {!register ? (
+                    <LoginForm
+                      values={onFinish}
+                      setRegister={setRegister}
+                    ></LoginForm>
+                  ) : (
+                    <RegisterForm setRegister={setRegister}></RegisterForm>
+                  )}
                 </div>
               </span>
             </div>

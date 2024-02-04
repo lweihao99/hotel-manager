@@ -2,6 +2,8 @@ import HomePage from "./components/home/HomePage";
 import Login from "./components/Login";
 import Manage from "./components/manager/Manage";
 import AccountManage from "./components/manager/AccountManage";
+import StaffManage from "./components/manager/StaffManage";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
               path="account"
               element={<AccountManage></AccountManage>}
             ></Route>
+            <Route path="staff" element={<StaffManage></StaffManage>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

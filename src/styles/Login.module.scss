@@ -94,3 +94,22 @@
     }
   }
 }
+
+#components-form-demo-normal-login .login-form {
+  max-width: 400px;
+}
+
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+  float: left;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
+:where(.css-dev-only-do-not-override-i1mju1).ant-row {
+  display: flex;
+  justify-content: center;
+}
