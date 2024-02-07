@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Form,
@@ -11,10 +12,16 @@ import {
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { UilEnvelopeEdit, UilUser } from "@iconscout/react-unicons";
 
+import { _createUser } from "./api/registerAPI";
+
 function RegisterForm({ setRegister }) {
   const [form] = Form.useForm();
+
   const [firstStep, setFirstStep] = useState(true);
   const [date, setDate] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
+  const [userAccount, setUserAccount] = useState({});
+  const [passwordValidate, setPasswordValidate] = useState(null);
 
   // 生日日期
   const onDateChange = (date, dateString) => {
@@ -22,19 +29,45 @@ function RegisterForm({ setRegister }) {
     setDate(dateString);
   };
 
-  const onFinish = (values) => {
-    // 进行用户注册，创建一个新的客人account
-    let person;
-    if (firstStep) {
-      console.log(values);
-      person = {
-        name: values.name,
-        email: values.email,
-        createdDate: date,
-      };
-      setFirstStep(false);
-    } else {
-      const { username, password, confirmPassword } = values;
+  const onFinish = async (values) => {
+    try {
+      // 进行用户注册，创建一个新的客户account
+      let person = {};
+      if (firstStep) {
+        setFirstStep(false);
+        const userInfo = {
+          name: values.name,
+          email: values.email,
+          birthDate: date,
+        };
+        setUserInfo(userInfo);
+        return;
+      } else {
+        const { username, password, confirmPassword } = values;
+        if (password !== confirmPassword) {
+          message.error("Password not correct");
+          setPasswordValidate(false);
+        } else {
+          setPasswordValidate(true);
+          const account = {
+            username,
+            password,
+            confirmPassword,
+          };
+          setUserAccount(account);
+          person = { ...userInfo, ...account };
+          console.log(person);
+        }
+      }
+      // const person = { ...userInfo, ...userAccount };
+      console.log(person);
+      const data = await _createUser(person);
+      if (data.status) {
+        message.success("Register success");
+        setRegister(false);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -99,6 +132,24 @@ function RegisterForm({ setRegister }) {
             wrapperCol={{ span: 18 }}
             allowClear
           />
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Next
+            </Button>
+            <Button
+              style={{ marginLeft: "2rem" }}
+              onClick={() => {
+                if (firstStep) {
+                  // 直接清除并返回到登录页面
+                  form.resetFields();
+                  setRegister(false);
+                }
+              }}
+            >
+              Cancel
+            </Button>
+          </Form.Item>
         </div>
       ) : (
         // 第二步注册，进行账号以及密码的创建
@@ -126,6 +177,14 @@ function RegisterForm({ setRegister }) {
                 message: "Please input your password!",
               },
             ]}
+            validateStatus={
+              passwordValidate === null
+                ? "default"
+                : passwordValidate
+                ? "success"
+                : "error"
+            }
+            hasFeedback
           >
             <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
@@ -141,15 +200,48 @@ function RegisterForm({ setRegister }) {
                 message: "Please confirm your password!",
               },
             ]}
+            validateStatus={
+              passwordValidate === null
+                ? "default"
+                : passwordValidate
+                ? "success"
+                : "error"
+            }
+            hasFeedback
+            help={
+              passwordValidate === null
+                ? ""
+                : passwordValidate
+                ? ""
+                : "Not the same password"
+            }
           >
             <Input
+              type="password"
               prefix={<LockOutlined className="site-form-item-icon" />}
               placeholder="Confirm Passoword"
             />
           </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+            <Button
+              style={{ marginLeft: "2rem" }}
+              onClick={() => {
+                if (!firstStep) {
+                  // 如果是在第二部就返回到第一步
+                  setFirstStep(true);
+                }
+              }}
+            >
+              Back
+            </Button>
+          </Form.Item>
         </div>
       )}
-      <Form.Item>
+      {/* <Form.Item>
         <Button type="primary" htmlType="submit">
           {firstStep ? "Next" : "Register"}
         </Button>
@@ -168,7 +260,7 @@ function RegisterForm({ setRegister }) {
         >
           {firstStep ? "Cancel" : "Back"}
         </Button>
-      </Form.Item>
+      </Form.Item> */}
     </Form>
   );
 }

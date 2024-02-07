@@ -28,7 +28,7 @@ function LoginForm({ values, setRegister }) {
         maxWidth: 600,
       }}
       initialValues={{
-        remember: true,
+        // remember: true,
         username: "",
         password: "",
       }}
@@ -65,7 +65,8 @@ function LoginForm({ values, setRegister }) {
           placeholder="Password"
         />
       </Form.Item>
-      <Form.Item className="remember-box">
+      {/*   REMEMBER BOX */}
+      {/* <Form.Item className="remember-box">
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
@@ -73,7 +74,7 @@ function LoginForm({ values, setRegister }) {
         <a className="login-form-forgot" href="#">
           Forgot password
         </a>
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item>
         <Button type="primary" htmlType="submit">
           Login

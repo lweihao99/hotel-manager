@@ -11,8 +11,8 @@ export const _login = async (params) => {
 
     if (!data) throw Error("fetching data failed.");
 
-    // 处理返回的数据, 如果成功就在浏览器缓存token
-    if (data.status === "success") {
+    // 处理返回的数据, 如果成功就在浏览器缓存tokens
+    if (data.status === true) {
       sessionStorage.setItem("token", JSON.stringify(data.token));
     }
 
@@ -21,5 +21,3 @@ export const _login = async (params) => {
     console.error("Error", error.message);
   }
 };
-
-// new user register, 登录新的员工信息

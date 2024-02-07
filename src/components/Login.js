@@ -25,13 +25,18 @@ function Login() {
   const onFinish = async (values) => {
     try {
       const res = await _login(values); // 进行登录请求
+      // console.log(res);
 
       if (!res) throw Error("Login Failed.");
 
-      if (res.status === "success") {
-        // message.success("登录成功");
-        message.success("Login success");
-        navigate("/manage");
+      if (res.status === true) {
+        if (res.admin) {
+          // message.success("登录成功");
+          message.success("Login success");
+          navigate("/manage");
+        } else {
+          message.error("You are not an admin.");
+        }
       }
     } catch (error) {
       message.error("Login Failed.");
