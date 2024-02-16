@@ -56,3 +56,8 @@ export const _edit_role = async (id, oldData) => {
     console.error(error);
   }
 };
+
+// upload avatar
+export const _avatar_upload = (data, config) => {
+  return axios.post("api/avatar", data, config); // 如果在请求的时候设置了 {body:data}这种对象，axios会将对象转换为JSON格式发送到服务器
+};
