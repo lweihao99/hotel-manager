@@ -101,6 +101,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
         if (res.status === 200) {
           openNotificationWithIcon("success", data.name, data.role);
 
+          // todo 在手动更新数据之后由于没有重新设计日期，日期会保持数据库的样子，需要在前端或者后端进行日期的format以保证是年月日
           // 手动更新数据
           setRoleList((prev) => [...prev, { key: data.roleId, ...data }]);
         }
@@ -131,6 +132,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
     }
   };
 
+  // todo 需要封装消息通知保证复用性
   // notification on create
   const openNotificationWithIcon = (type, name, role) => {
     api[type]({
@@ -140,6 +142,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
     });
   };
 
+  // todo 由于可能handleUpload会在handleChange之前执行，所以第一次上传图片的时候可能会没有imageUrl导致DatatoURLBlob函数接收不到参数，从而报错的bug，需要解决
   // info change, ·监视图片变化
   const handleChange = ({ file, fileList }) => {
     if (file.status === "uploading") {
@@ -166,6 +169,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
     for (let i = 0; i < base64ToByte.length; i++) {
       int8Array[i] = base64ToByte.charCodeAt(i); // 返回指定位置字符的Unicode编码，将解码后的二进制数据的ACII值存储到 Uint8Array中
     }
+    // todo 添加一个original name进行区分
     return new Blob([bynaryArray], { type: mimeString }); // 创建一个Blob对象，用于存放二进制数据，并指定MIME类型
   };
 
@@ -197,6 +201,7 @@ function DrawerForm({ setDrawerClose, setRoleList, roleId, oldRole }) {
       },
     };
 
+    // todo 在确认可以直接在blob里面添加name后删除File直接使用blob传参
     // 创建一个File对象实例，并指定文件名以及mimetype
     const newFile = new File([blob], `${file.name}`, { type: blob.type });
     console.log(newFile);

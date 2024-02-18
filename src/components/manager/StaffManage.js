@@ -99,7 +99,7 @@ function StaffManage() {
       dataIndex: "email",
     },
     {
-      title: "Phone Number",
+      title: "Contact",
       key: "phoneNumber",
       dataIndex: "phoneNumber",
     },

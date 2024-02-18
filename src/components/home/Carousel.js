@@ -58,6 +58,7 @@ function Carousel() {
     return () => clearInterval(timer);
   }, []);
 
+  // todo 轮播图需要重新设计一个，可以简单但是要顺畅
   return (
     <div className={styles.container} id="carousel">
       <div

@@ -1,0 +1,91 @@
+.room_menu_bar {
+  width: 100%;
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: saturate(180%) blur(20px);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+  height: 80px;
+
+  .menu_box {
+    flex: 1 1 auto;
+    align-items: center;
+    display: flex;
+    position: static;
+
+    .filter_box {
+      display: flex;
+      flex: 1 1 auto;
+      height: 100%;
+      max-width: 500px;
+      padding-left: 24px;
+      white-space: nowrap; // 不换行
+      margin: 0 10rem 0 0;
+      align-items: center;
+      justify-content: center;
+      background: #f8f8f8;
+      border-radius: 10px;
+      // padding: 1.5rem 0;
+      transition: all ease 0.3s;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+      .filter_menu {
+        display: flex;
+        flex: 1 1 auto;
+        width: 0;
+        height: 100%;
+        white-space: nowrap;
+        position: relative;
+        margin-right: 40px;
+        align-items: center;
+
+        .filter_container {
+          flex: 1 1 auto;
+          width: 0;
+          height: 100%;
+          overflow: hidden;
+
+          .tab_container {
+            position: relative;
+            height: 100%;
+            margin-left: 0;
+            transition: all ease 0.5s;
+            top: 25%;
+
+            .underline {
+              transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 50ms;
+              height: 2px;
+              background: #34bdf5;
+              position: absolute;
+              top: 40px;
+            }
+          }
+
+          .filter_tab {
+            height: 100%;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            padding: 0 20px;
+          }
+
+          span {
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 0;
+            display: inline-block;
+            height: 100%;
+            position: relative;
+            max-width: 100%;
+          }
+
+          span:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

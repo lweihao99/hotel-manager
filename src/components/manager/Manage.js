@@ -45,11 +45,11 @@ const ITEMS = [
     label: "Room",
     children: [
       {
-        key: "room",
+        key: "rooms",
         label: "Room Manage",
       },
       {
-        key: "type",
+        key: "types",
         label: "Room Type Manage",
       },
     ],
@@ -141,6 +141,7 @@ function Manage() {
 
     if (key === "accountManage") navigate("/manage/account");
     if (key === "staffManage") navigate("/manage/staff");
+    if (key === "rooms") navigate("/manage/rooms");
   };
 
   // handle logout
@@ -161,6 +162,7 @@ function Manage() {
     setIsModalOpen(false);
   };
 
+  // todo 在登录之后跳转的页面是Dashboard获取个人账户或者酒店信息的overview
   return (
     <Layout styles={styles.layout}>
       {/* side menu bar */}
@@ -238,6 +240,7 @@ function Manage() {
             borderRadius: borderRadiusLG,
           }}
         >
+          {/* Dashboard界面 */}
           <Outlet></Outlet>
         </Content>
       </Layout>
