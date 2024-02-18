@@ -5,7 +5,7 @@ import { Table, Input } from "antd";
 
 const columns = [
   {
-    title: "Name",
+    title: "Room Name",
     dataIndex: "name",
     filters: [
       {
@@ -38,13 +38,13 @@ const columns = [
     sortDirections: ["descend"],
   },
   {
-    title: "Age",
+    title: "Bed Type",
     dataIndex: "age",
     defaultSortOrder: "descend",
     sorter: (a, b) => a.age - b.age,
   },
   {
-    title: "Address",
+    title: "Room Floor",
     dataIndex: "address",
     filters: [
       {
@@ -202,6 +202,8 @@ function RoomManage() {
           </div>
         </div>
       </div>
+
+      {/* Content Table */}
       <Table
         style={{ marginTop: "5rem" }}
         columns={columns}
